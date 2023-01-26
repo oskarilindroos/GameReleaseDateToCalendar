@@ -5,6 +5,9 @@ export const darkTheme: DefaultTheme = {
     primary: "#6ED4FF",
     secondary: "#347F9F",
     background: "#06081F",
+    secondaryBackground: "#0d1246",
+    headerBackground: "#06081F",
+    divider: "#001b36",
     gradients: ["#06081F", "#070924", "#0b1357"],
   },
   fontSizes: {
@@ -20,6 +23,9 @@ export const lightTheme: DefaultTheme = {
     primary: "black",
     secondary: "gray",
     background: "white",
+    secondaryBackground: "#e0e0e0",
+    headerBackground: "#e9e9e9",
+    divider: "gray",
     gradients: ["gray", "white"],
   },
   fontSizes: {

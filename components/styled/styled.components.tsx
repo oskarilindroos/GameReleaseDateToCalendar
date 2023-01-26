@@ -1,21 +1,26 @@
 import styled from "styled-components/native";
-import { LinearGradient } from "expo-linear-gradient";
-
-//const gradients:Array<string> =
-/*
-export const Wrapper = styled(LinearGradient).attrs({
-  colors: [],
-})`
-  height: 100%;
-  width: 100%;
-  font-family: "Montserrat-Regular";
-  font-size: 20px;
-`;*/
 
 export const Wrapper = styled.View`
   background-color: ${(props) => props.theme.colors.background};
   height: 100%;
   width: 100%;
+`;
+
+export const StyledHeader = styled.View`
+  background-color: ${(props) => props.theme.colors.headerBackground};
+  border-bottom-width: 2px;
+  border-bottom-color: ${(props) => props.theme.colors.divider};
+`;
+
+export const StyledHeaderContent = styled.View`
+  margin-top: 50px;
+  margin-bottom: 20px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 export const Paragraph = styled.Text`
@@ -30,26 +35,49 @@ export const Heading = styled.Text`
   color: ${(props) => props.theme.colors.primary};
 `;
 
-export const StyledDrawerContainer = styled.View`
+export const DrawerContainer = styled.View`
   background-color: ${(props) => props.theme.colors.background};
+  padding-top: 75px;
   height: 100%;
   width: 100%;
 `;
 
-export const SettingsContainer = styled.View`
-  display: flex;
-  justify-content: center;
+export const StyledTextInput = styled.TextInput`
+  flex: 1;
+  padding: 7px;
+  padding-left: 20px;
+  color: ${(props) => props.theme.colors.primary};
+  font-family: MontserratSemiBold;
+`;
+
+export const StyledSearchBarContainer = styled.View`
+  margin-left: 20px;
+  width: 75%;
+  border-radius: 200px;
+  flex-direction: row;
+  background-color: ${(props) => props.theme.colors.secondaryBackground};
   align-items: center;
 `;
 
-export const MainContentContainer = styled.View`
+export const ContentContainer = styled.View`
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
+  flex: 1;
   width: 90%;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   //border: 1px solid red;
+`;
+
+export const FlexRow = styled.View`
+  margin-top: 20px;
+  padding-bottom: 5px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const Divider = styled.View`
+  background-color: ${(props) => props.theme.colors.divider};
+  height: 2px;
+  width: 100%;
 `;

@@ -9,6 +9,9 @@ declare module "styled-components/native" {
       primary: string;
       secondary: string;
       background: string;
+      secondaryBackground: string;
+      headerBackground: string;
+      divider: string;
       gradients: Array<string>;
     };
 

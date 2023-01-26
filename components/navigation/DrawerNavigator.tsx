@@ -28,6 +28,7 @@ export default function DrawerNavigator() {
           fontFamily: "MontserratSemiBold",
         },
         drawerType: "slide",
+        swipeEdgeWidth: 150,
       }}
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
