@@ -4,13 +4,14 @@ Currently WIP React Native app for easily adding game release dates to your cale
 
 # Technologies to be used
 
-- React Native (Android)
-- [react-native-add-calendar-event](https://github.com/vonovak/react-native-add-calendar-event)
-- IGDB API (for searching for games and release dates)
+- React Native Expo (Android)
+- Expo Calendar API
+- IGDB API (for searching games and release dates)
 
 # Project goals
 
 - To learn React Native
+- To learn theming for React
 - To learn TypeScript
 - To learn Figma and UI/UX design
 - To learn mobile development

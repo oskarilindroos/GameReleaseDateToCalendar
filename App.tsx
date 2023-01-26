@@ -28,6 +28,7 @@ export default function App() {
     MontserratSemiBold: require("./assets/fonts/Montserrat-SemiBold.ttf"),
     MontserratBold: require("./assets/fonts/Montserrat-Bold.ttf"),
   });
+
   if (!loaded) {
     return null;
   }
