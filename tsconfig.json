@@ -3,7 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "types": [
-      "@types/styled-components-react-native"
+      "@types/styled-components-react-native",
+      "@types/styled-components"
     ]
   },
 }

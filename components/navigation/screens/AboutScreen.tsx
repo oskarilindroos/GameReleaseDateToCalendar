@@ -1,16 +1,11 @@
 import { View } from "react-native";
+import ICalendarLink from "react-icalendar-link";
+import { Wrapper, Paragraph, Heading } from "../../styled/styled.components";
 
-import {
-    Wrapper,
-    Paragraph,
-    Heading,
-  } from "../../styled/StyledComponents";
-
-  export default function AboutScreen() {
-    return (
-      <Wrapper>
-          <Heading>About Screen</Heading>
-      </Wrapper>
-
-    );
-  }
+export default function AboutScreen() {
+  return (
+    <Wrapper>
+      <Heading>About Screen</Heading>
+    </Wrapper>
+  );
+}
