@@ -9,8 +9,6 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 
-//navigation.openDrawer();
-
 export default function Header() {
   const theme = useTheme();
 

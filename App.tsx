@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native";
 import { navigationRef } from "./services/NavigationService";
 import DrawerNavigator from "./components/navigation/DrawerNavigator";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { ThemeProvider } from "styled-components";
 import { useFonts } from "expo-font";
 import { darkTheme, lightTheme } from "./components/styled/themes";
@@ -37,7 +37,7 @@ export default function App() {
     <>
       <StatusBar style={theme == darkTheme ? "light" : "dark"} />
       <ThemeProvider theme={theme}>
-        <NavigationContainer ref={navigationRef}>
+        <NavigationContainer ref={navigationRef} theme={DarkTheme}>
           <DrawerNavigator />
         </NavigationContainer>
       </ThemeProvider>
