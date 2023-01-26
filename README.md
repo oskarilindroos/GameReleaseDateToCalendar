@@ -20,9 +20,9 @@ Currently WIP React Native app for easily adding game release dates to your cale
 
 [Current prototype in Figma](https://www.figma.com/proto/mv5lKRJEosANrBMU9ozkWz/Mobile-APP?node-id=1%3A13&scaling=scale-down&page-id=0%3A1&starting-point-node-id=1%3A13)
 
-![Home page](/prototype/home.jpg)
-![Home page 2](/prototype/home_2.jpg)
-![Home page 2](/prototype/search_results.jpg)
-![Home page 2](/prototype/settings.jpg)
+![Home page](assets/prototype/home.jpg)
+![Home page 2](assets/prototype/home_2.jpg)
+![Home page 2](assets/prototype/search_results.jpg)
+![Home page 2](assets/prototype/settings.jpg)
 
 
