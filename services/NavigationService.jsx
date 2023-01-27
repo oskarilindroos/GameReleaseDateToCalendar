@@ -10,3 +10,7 @@ export const navigationRef = createNavigationContainerRef();
 export function openDrawer() {
   navigationRef.dispatch(DrawerActions.openDrawer());
 }
+
+export function navigateTo(name) {
+  navigationRef.navigate(name);
+}
