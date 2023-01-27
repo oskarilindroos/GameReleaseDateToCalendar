@@ -11,6 +11,7 @@ import { useTheme } from "styled-components/native";
 
 export default function HomeScreen() {
   // TODO: Move in to its own file, this is temporary to check that the API works
+  /*
   useEffect(() => {
     const checkCalendarPermission = async () => {
       try {
@@ -32,9 +33,10 @@ export default function HomeScreen() {
 
     checkCalendarPermission();
   }, []);
+  */
   const theme = useTheme();
   return (
-    <Wrapper colors={theme.colors.gradients}>
+    <Wrapper>
       <ContentContainer>
         <Heading>Upcoming games</Heading>
       </ContentContainer>

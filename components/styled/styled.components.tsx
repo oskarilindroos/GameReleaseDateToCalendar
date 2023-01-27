@@ -1,7 +1,13 @@
 import styled from "styled-components/native";
 import { LinearGradient } from "expo-linear-gradient";
-
+/*
 export const Wrapper = styled(LinearGradient)`
+  height: 100%;
+  width: 100%;
+`;*/
+
+export const Wrapper = styled.ScrollView`
+  background-color: ${(props) => props.theme.colors.background};
   height: 100%;
   width: 100%;
 `;
@@ -24,6 +30,7 @@ export const StyledHeaderContent = styled.View`
 `;
 
 export const Paragraph = styled.Text`
+  margin-top: 10px;
   font-family: MontserratSemiBold;
   font-size: ${(props) => props.theme.fontSizes.l};
   color: ${(props) => props.theme.colors.secondary};

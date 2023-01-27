@@ -13,6 +13,7 @@ declare module "styled-components/native" {
       headerBackground: string;
       divider: string;
       gradients: Array<string>;
+      gradients2: Array<string>;
     };
 
     fontSizes: {

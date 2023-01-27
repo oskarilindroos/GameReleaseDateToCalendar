@@ -12,9 +12,14 @@ const backgroundImage = { uri: "https://reactjs.org/logo-og.png" };
 export default function AboutScreen() {
   const theme = useTheme();
   return (
-    <Wrapper colors={theme.colors.gradients}>
+    <Wrapper>
       <ContentContainer>
         <Heading>About</Heading>
+        <Paragraph>
+          This app lets you search for games using the publicly available game
+          database IGDB.com. Tapping on games lets you easily add upcoming game
+          release dates to your calendar.
+        </Paragraph>
       </ContentContainer>
     </Wrapper>
   );

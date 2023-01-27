@@ -21,7 +21,10 @@ export default function SearchBar() {
 
   return (
     <StyledSearchBarContainer>
-      <Pressable onPress={onSubmitSearch} hitSlop={20}>
+      <Pressable
+        onPress={searchPhrase.length > 0 ? onSubmitSearch : null}
+        hitSlop={20}
+      >
         <Ionicons
           style={{
             paddingLeft: 10,
