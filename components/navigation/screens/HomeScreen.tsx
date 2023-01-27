@@ -7,6 +7,7 @@ import {
   StyledHeader,
   ContentContainer,
 } from "../../styled/styled.components";
+import { useTheme } from "styled-components/native";
 
 export default function HomeScreen() {
   // TODO: Move in to its own file, this is temporary to check that the API works
@@ -31,9 +32,9 @@ export default function HomeScreen() {
 
     checkCalendarPermission();
   }, []);
-
+  const theme = useTheme();
   return (
-    <Wrapper>
+    <Wrapper colors={theme.colors.gradients}>
       <ContentContainer>
         <Heading>Upcoming games</Heading>
       </ContentContainer>

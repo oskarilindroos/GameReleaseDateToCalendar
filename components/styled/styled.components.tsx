@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
+import { LinearGradient } from "expo-linear-gradient";
 
-export const Wrapper = styled.View`
-  background-color: ${(props) => props.theme.colors.background};
+export const Wrapper = styled(LinearGradient)`
   height: 100%;
   width: 100%;
 `;

@@ -23,7 +23,7 @@ export default function SettingsScreen() {
     EventRegister.emit("toggleDarkTheme", isDarkThemeEnabled);
   };
   return (
-    <Wrapper>
+    <Wrapper colors={theme.colors.gradients}>
       <ContentContainer>
         <Heading>Settings</Heading>
         <FlexRow>

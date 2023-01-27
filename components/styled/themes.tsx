@@ -26,7 +26,7 @@ export const lightTheme: DefaultTheme = {
     secondaryBackground: "#e0e0e0",
     headerBackground: "#e9e9e9",
     divider: "gray",
-    gradients: ["gray", "white"],
+    gradients: ["white", "#e9e9e9", "#9f9f9f"],
   },
   fontSizes: {
     s: 12,
