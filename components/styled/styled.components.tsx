@@ -45,7 +45,7 @@ export const DrawerContainer = styled.View`
 export const StyledTextInput = styled.TextInput`
   flex: 1;
   padding: 7px;
-  padding-left: 20px;
+  padding-left: 10px;
   color: ${(props) => props.theme.colors.primary};
   font-family: MontserratSemiBold;
 `;

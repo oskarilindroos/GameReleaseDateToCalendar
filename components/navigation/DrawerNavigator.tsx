@@ -30,7 +30,7 @@ export default function DrawerNavigator() {
           marginLeft: -10,
         },
         drawerType: "slide",
-        swipeEdgeWidth: 150,
+        swipeEdgeWidth: 1000,
       }}
     >
       <Drawer.Screen
