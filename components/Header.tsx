@@ -1,4 +1,4 @@
-import { TouchableHighlight } from "react-native";
+import { Pressable, View } from "react-native";
 import * as NavigationService from "../services/NavigationService";
 import SearchBar from "./SearchBar";
 import {
@@ -15,14 +15,9 @@ export default function Header() {
   return (
     <StyledHeader>
       <StyledHeaderContent>
-        <TouchableHighlight
-          activeOpacity={0.6}
-          underlayColor={theme.colors.headerBackground}
-          onPress={() => NavigationService.openDrawer()}
-        >
+        <Pressable onPress={() => NavigationService.openDrawer()} hitSlop={20}>
           <Ionicons name={"menu"} size={45} color={theme.colors.primary} />
-        </TouchableHighlight>
-
+        </Pressable>
         <SearchBar />
       </StyledHeaderContent>
     </StyledHeader>
