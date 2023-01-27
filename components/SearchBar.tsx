@@ -6,29 +6,41 @@ import {
 import { useTheme } from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
+import * as NavigationService from "../services/NavigationService";
 
 export default function SearchBar() {
   const theme = useTheme();
   const [focused, setFocused] = useState(false);
   const [searchPhrase, setSearchPhrase] = useState("");
 
+  const onSubmitSearch = () => {
+    console.log(`Searching ${searchPhrase}`);
+    setSearchPhrase("");
+    NavigationService.navigateTo("Home");
+  };
+
   return (
     <StyledSearchBarContainer>
-      <Ionicons
-        style={{
-          paddingLeft: 20,
-          paddingRight: 10,
-          borderRightWidth: 2,
-          borderRightColor: theme.colors.secondary,
-        }}
-        name={"search"}
-        size={22}
-        color={theme.colors.primary}
-      />
+      <Pressable onPress={onSubmitSearch} hitSlop={20}>
+        <Ionicons
+          style={{
+            paddingLeft: 10,
+            paddingRight: 10,
+            borderRightWidth: 2,
+            borderRightColor: theme.colors.secondary,
+          }}
+          name={"search"}
+          size={22}
+          color={theme.colors.primary}
+        />
+      </Pressable>
       <StyledTextInput
-        placeholder="Search for a game"
+        placeholder="Search games..."
         placeholderTextColor={theme.colors.secondary}
+        cursorColor={theme.colors.primary}
         value={searchPhrase}
+        onSubmitEditing={onSubmitSearch}
+        maxLength={30}
         onChangeText={(text) => setSearchPhrase(text)}
         onFocus={() => {
           setFocused(true);
@@ -41,7 +53,7 @@ export default function SearchBar() {
               paddingRight: 20,
             }}
             name={"close"}
-            size={30}
+            size={24}
             color={theme.colors.primary}
           />
         </Pressable>

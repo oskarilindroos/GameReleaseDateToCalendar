@@ -2,13 +2,13 @@ import "react-native-gesture-handler";
 import { useState, useEffect } from "react";
 import { EventRegister } from "react-native-event-listeners";
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native";
 import { navigationRef } from "./services/NavigationService";
 import DrawerNavigator from "./components/navigation/DrawerNavigator";
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { ThemeProvider } from "styled-components";
 import { useFonts } from "expo-font";
 import { darkTheme, lightTheme } from "./components/styled/themes";
+import Header from "./components/Header";
 
 export default function App() {
   const [theme, setTheme] = useState(darkTheme);
@@ -37,6 +37,7 @@ export default function App() {
     <>
       <StatusBar style={theme == darkTheme ? "light" : "dark"} />
       <ThemeProvider theme={theme}>
+        <Header />
         <NavigationContainer ref={navigationRef} theme={DarkTheme}>
           <DrawerNavigator />
         </NavigationContainer>

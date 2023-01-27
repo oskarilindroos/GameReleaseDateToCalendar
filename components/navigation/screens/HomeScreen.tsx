@@ -1,7 +1,5 @@
-import { View } from "react-native";
-
 import * as Calendar from "expo-calendar";
-
+import { useEffect } from "react";
 import {
   Wrapper,
   Paragraph,
@@ -9,8 +7,6 @@ import {
   StyledHeader,
   ContentContainer,
 } from "../../styled/styled.components";
-import { useEffect } from "react";
-import Header from "../../Header";
 
 export default function HomeScreen() {
   // TODO: Move in to its own file, this is temporary to check that the API works
@@ -38,7 +34,6 @@ export default function HomeScreen() {
 
   return (
     <Wrapper>
-      <Header />
       <ContentContainer>
         <Heading>Upcoming games</Heading>
       </ContentContainer>

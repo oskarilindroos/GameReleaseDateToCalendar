@@ -14,8 +14,6 @@ import {
   StyledHeader,
 } from "../../styled/styled.components";
 
-import Header from "../../Header";
-
 export default function SettingsScreen() {
   const theme = useTheme();
   const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(true); // Dark theme enabled by default
@@ -26,7 +24,6 @@ export default function SettingsScreen() {
   };
   return (
     <Wrapper>
-      <Header />
       <ContentContainer>
         <Heading>Settings</Heading>
         <FlexRow>
