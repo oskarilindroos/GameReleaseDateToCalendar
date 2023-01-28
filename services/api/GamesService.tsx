@@ -9,13 +9,15 @@ const config = {
   },
 };
 
-export const searchGamesByName = (gameName: string) => {
-  const data = `fields name, release_dates.date, release_dates.platform, rating;
-    where name ~ "${gameName}"*  &
+export const searchUpcomingGamesByName = (gameName: string) => {
+  const data = `fields name, release_dates.human;
+    where name ~ *"${gameName}"*  &
+    version_parent = null &
     release_dates.platform = 6 &
-    release_dates.date > 1674847104814 ;
+    (release_dates.date > ${Math.floor(Date.now() / 1000)} |
+    release_dates.human = "TBD");
     sort rating desc;
-    limit 10;
+    limit 50;
     `;
   console.log("Making request");
   return axios
