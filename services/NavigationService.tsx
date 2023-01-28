@@ -11,6 +11,6 @@ export function openDrawer() {
   navigationRef.dispatch(DrawerActions.openDrawer());
 }
 
-export function navigateTo(name) {
-  navigationRef.navigate(name);
+export function navigateTo(name: any, params: any) {
+  navigationRef.navigate(name, params);
 }

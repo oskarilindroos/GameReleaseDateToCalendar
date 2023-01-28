@@ -1,5 +1,5 @@
 import * as Calendar from "expo-calendar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   Wrapper,
   Paragraph,
@@ -8,10 +8,39 @@ import {
   ContentContainer,
 } from "../../styled/styled.components";
 import { useTheme } from "styled-components/native";
+import { searchGamesByName } from "../../../services/api/GamesService";
 
-export default function HomeScreen() {
-  // TODO: Move in to its own file, this is temporary to check that the API works
-  /*
+export default function HomeScreen({ route }) {
+  const [searchPhrase, setSearchPhrase] = useState("");
+  const [searchResults, setSearchResults] = useState();
+
+  useEffect(() => {
+    setSearchPhrase(route.params);
+  }, [route.params]);
+
+  useEffect(() => {
+    if (searchPhrase) {
+      searchGamesByName(searchPhrase).then((result) =>
+        setSearchResults(result)
+      );
+    }
+  }, [searchPhrase]);
+  return (
+    <Wrapper>
+      <ContentContainer>
+        <Heading>
+          {searchPhrase
+            ? `Search results for ${searchPhrase}...`
+            : "Upcoming games"}
+        </Heading>
+        <Paragraph>{JSON.stringify(searchResults)}</Paragraph>
+      </ContentContainer>
+    </Wrapper>
+  );
+}
+
+// TODO: Move in to its own file, this is temporary to check that the API works
+/*
   useEffect(() => {
     const checkCalendarPermission = async () => {
       try {
@@ -34,12 +63,3 @@ export default function HomeScreen() {
     checkCalendarPermission();
   }, []);
   */
-  const theme = useTheme();
-  return (
-    <Wrapper>
-      <ContentContainer>
-        <Heading>Upcoming games</Heading>
-      </ContentContainer>
-    </Wrapper>
-  );
-}

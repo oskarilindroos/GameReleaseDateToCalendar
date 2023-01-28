@@ -14,9 +14,8 @@ export default function SearchBar() {
   const [searchPhrase, setSearchPhrase] = useState("");
 
   const onSubmitSearch = () => {
-    console.log(`Searching ${searchPhrase}`);
     setSearchPhrase("");
-    NavigationService.navigateTo("Home");
+    NavigationService.navigateTo("Home", searchPhrase);
   };
 
   return (
