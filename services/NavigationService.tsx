@@ -11,6 +11,6 @@ export function toggleDrawer() {
   navigationRef.dispatch(DrawerActions.toggleDrawer());
 }
 
-export function navigateTo(name: any, params: any) {
+export function navigateTo(name: string, params: any) {
   navigationRef.navigate(name, params);
 }

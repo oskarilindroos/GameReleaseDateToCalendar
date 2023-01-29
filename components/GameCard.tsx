@@ -1,42 +1,35 @@
-import { Pressable, Animated } from "react-native";
+import { Pressable, Animated, TouchableHighlight } from "react-native";
 import { useTheme } from "styled-components";
 import * as Styled from "./styled/styles";
 
-/*
 type GameProps = {
   game: {
+    id: number;
     name: string;
-    cover: {
-      id: string;
-      image_id: string;
-    };
-    release_dates: Array<object>;
+    coverId: number;
+    releaseDates: Array<string>;
+    firstReleaseDate: string;
   };
-};*/
+};
 
-export default function GameCard({ game }) {
+export default function GameCard({ game }: GameProps) {
   const theme = useTheme();
 
   return (
-    <Pressable>
-      <Styled.GameCard>
+    <Styled.GameCard>
+      <TouchableHighlight onPress={() => console.log(game.name)}>
         <Styled.GameCardImage
           imageStyle={{
             borderRadius: theme.borderRadius,
           }}
-          style={{ width: 190, height: 250 }}
           resizeMode="cover"
           source={{
             uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.coverId}.png`,
           }}
-        ></Styled.GameCardImage>
-        <Styled.GameCardName>{game.name}</Styled.GameCardName>
-        <Styled.GameCardDate>
-          {game.firstReleaseDate != null
-            ? game.firstReleaseDate
-            : game.releaseDates[0].date}
-        </Styled.GameCardDate>
-      </Styled.GameCard>
-    </Pressable>
+        />
+      </TouchableHighlight>
+      <Styled.GameCardName>{game.name}</Styled.GameCardName>
+      <Styled.GameCardDate>{game.firstReleaseDate}</Styled.GameCardDate>
+    </Styled.GameCard>
   );
 }

@@ -1,9 +1,14 @@
-import { Pressable } from "react-native";
+import { Pressable, Dimensions } from "react-native";
 import { useTheme } from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import * as NavigationService from "../../../services/NavigationService";
 import * as Styled from "../../styled/styles";
+
+const screenWidth = Dimensions.get("window").width;
+const actualContainerSize = screenWidth - screenWidth * 0.1;
+console.log(screenWidth);
+console.log(actualContainerSize);
 
 export default function SearchBar() {
   const theme = useTheme();
@@ -23,7 +28,7 @@ export default function SearchBar() {
         <Ionicons
           style={{
             paddingLeft: 10,
-            paddingRight: 10,
+            paddingRight: 5,
           }}
           name={"search"}
           size={22}

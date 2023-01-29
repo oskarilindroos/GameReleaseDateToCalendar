@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 
-export const Wrapper = styled.ScrollView`
+export const Wrapper = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
   width: 100%;
   height: 100%;
@@ -26,8 +26,8 @@ export const HeaderContainer = styled.View`
 `;
 
 export const HeaderContent = styled.View`
-  margin-top: 50px;
-  margin-bottom: 20px;
+  margin-top: 40px;
+  margin-bottom: 10px;
   width: 90%;
   margin-left: auto;
   margin-right: auto;
@@ -49,7 +49,6 @@ export const SearchBarContainer = styled.View`
 export const SearchBarTextInput = styled.TextInput`
   flex: 1;
   padding: 7px;
-  padding-left: 10px;
   color: ${({ theme }) => theme.colors.primary};
   font-family: MontserratSemiBold;
 `;
@@ -65,12 +64,15 @@ export const ContentContainer = styled.View`
 export const GameCard = styled.View`
   border-radius: ${({ theme }) => theme.borderRadius};
   background-color: ${({ theme }) => theme.colors.background};
-  max-width: 200px;
+  width: 150px;
   margin-top: 20px;
-  margin-right: 20px;
+  margin-right: 10px;
 `;
 
-export const GameCardImage = styled.ImageBackground``;
+export const GameCardImage = styled.ImageBackground`
+  width: 150px;
+  height: 200px;
+`;
 
 export const GameCardName = styled.Text`
   margin-top: 10px;

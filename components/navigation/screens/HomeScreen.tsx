@@ -6,7 +6,7 @@ import {
   getGamesNextMonth,
 } from "../../../services/api/GamesService";
 import GameCard from "../../GameCard";
-import { FlatList } from "react-native";
+import { FlatList, useWindowDimensions } from "react-native";
 
 export default function HomeScreen({ route }) {
   const theme = useTheme();
@@ -15,9 +15,27 @@ export default function HomeScreen({ route }) {
   const [gamesList, setGamesList] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const minCols = 2;
+  const imageWidth = 150;
+  const imageMargin = 10;
+
+  const calcNumColumns = (width: number) => {
+    const cols = width / imageWidth;
+    const colsFloor = Math.floor(cols) > minCols ? Math.floor(cols) : minCols;
+    const colsMinusMargin = cols - 2 * colsFloor * imageMargin;
+    if (colsMinusMargin < colsFloor && colsFloor > minCols)
+      return colsFloor - 1;
+    else return colsFloor;
+  };
+  const { width } = useWindowDimensions();
+  const [numColumns, setNumColumns] = useState(calcNumColumns(width));
+
+  useEffect(() => {
+    setNumColumns(calcNumColumns(width));
+  }, [width]);
+
   // Get the games releasing next month
-  // This is run only once when the app first loads
-  /*
+  // This is only ran once when the app first loads
   useEffect(() => {
     setLoading(true);
     getGamesNextMonth()
@@ -28,7 +46,7 @@ export default function HomeScreen({ route }) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);*/
+  }, []);
 
   // Set the search phrase state if route.params changes
   // route.params changes when the user submits the search input field and navigates back to home screen
@@ -38,7 +56,7 @@ export default function HomeScreen({ route }) {
 
   // When the search phrase is changed, call the games service for the search results
   useEffect(() => {
-    // Prevents useffect from being ran on first render
+    // The if clause prevents useffect from being ran on first render
     if (searchPhrase) {
       setGamesList([]);
       setLoading(true);
@@ -55,14 +73,20 @@ export default function HomeScreen({ route }) {
   return (
     <Styled.Wrapper>
       <Styled.ContentContainer>
-        <Styled.Title>
+        <Styled.Title style={{ marginBottom: 10 }}>
           {searchPhrase
             ? `Search results for '${searchPhrase}'`
-            : "Games releasing next month"}
+            : "Games releasing soon"}
         </Styled.Title>
         <FlatList
-          contentContainerStyle={{ alignItems: "center" }}
-          numColumns={3}
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "center",
+            paddingBottom: 40,
+          }}
+          showsVerticalScrollIndicator={false}
+          key={numColumns}
+          numColumns={numColumns}
           data={gamesList}
           renderItem={({ item }) => <GameCard game={item} />}
           keyExtractor={(item) => item.id}
