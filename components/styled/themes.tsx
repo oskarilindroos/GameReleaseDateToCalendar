@@ -1,6 +1,7 @@
 import { DefaultTheme } from "styled-components";
 
 export const darkTheme: DefaultTheme = {
+  borderRadius: 15,
   colors: {
     primary: "#6ED4FF",
     secondary: "#347F9F",
@@ -20,6 +21,8 @@ export const darkTheme: DefaultTheme = {
 };
 
 export const lightTheme: DefaultTheme = {
+  borderRadius: 15,
+
   colors: {
     primary: "black",
     secondary: "gray",

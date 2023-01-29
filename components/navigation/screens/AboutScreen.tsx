@@ -1,24 +1,16 @@
-import {
-  Wrapper,
-  Paragraph,
-  Heading,
-  StyledHeader,
-  ContentContainer,
-} from "../../styled/styled.components";
-import { useTheme } from "styled-components/native";
+import * as Styled from "../../styled/styles";
 
 export default function AboutScreen() {
-  const theme = useTheme();
   return (
-    <Wrapper>
-      <ContentContainer>
-        <Heading>About</Heading>
-        <Paragraph>
+    <Styled.Wrapper>
+      <Styled.ContentContainer>
+        <Styled.Title>About</Styled.Title>
+        <Styled.Paragraph>
           This app lets you search for games using the publicly available game
           database IGDB.com. Tapping on games lets you easily add upcoming game
           release dates to your calendar.
-        </Paragraph>
-      </ContentContainer>
-    </Wrapper>
+        </Styled.Paragraph>
+      </Styled.ContentContainer>
+    </Styled.Wrapper>
   );
 }

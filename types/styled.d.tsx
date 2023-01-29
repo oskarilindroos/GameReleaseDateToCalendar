@@ -3,7 +3,7 @@ import "styled-components/native";
 // Extending the DefaultTheme interface
 declare module "styled-components/native" {
   export interface DefaultTheme {
-    borderRadius?: string;
+    borderRadius: number;
 
     colors: {
       primary: string;

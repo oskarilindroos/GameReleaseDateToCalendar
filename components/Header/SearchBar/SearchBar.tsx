@@ -1,12 +1,9 @@
 import { Pressable } from "react-native";
-import {
-  StyledTextInput,
-  StyledSearchBarContainer,
-} from "./styled/styled.components";
 import { useTheme } from "styled-components";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
-import * as NavigationService from "../services/NavigationService";
+import * as NavigationService from "../../../services/NavigationService";
+import * as Styled from "../../styled/styles";
 
 export default function SearchBar() {
   const theme = useTheme();
@@ -14,12 +11,11 @@ export default function SearchBar() {
   const [searchPhrase, setSearchPhrase] = useState("");
 
   const onSubmitSearch = () => {
-    setSearchPhrase("");
     NavigationService.navigateTo("Home", searchPhrase);
   };
 
   return (
-    <StyledSearchBarContainer>
+    <Styled.SearchBarContainer>
       <Pressable
         onPress={searchPhrase.length > 0 ? onSubmitSearch : null}
         hitSlop={20}
@@ -28,15 +24,13 @@ export default function SearchBar() {
           style={{
             paddingLeft: 10,
             paddingRight: 10,
-            borderRightWidth: 2,
-            borderRightColor: theme.colors.secondary,
           }}
           name={"search"}
           size={22}
           color={theme.colors.primary}
         />
       </Pressable>
-      <StyledTextInput
+      <Styled.SearchBarTextInput
         placeholder="Search games..."
         placeholderTextColor={theme.colors.secondary}
         cursorColor={theme.colors.primary}
@@ -47,7 +41,7 @@ export default function SearchBar() {
         onFocus={() => {
           setFocused(true);
         }}
-      ></StyledTextInput>
+      />
       {focused && searchPhrase.length > 0 && (
         <Pressable onPress={() => setSearchPhrase("")} hitSlop={20}>
           <Ionicons
@@ -60,6 +54,6 @@ export default function SearchBar() {
           />
         </Pressable>
       )}
-    </StyledSearchBarContainer>
+    </Styled.SearchBarContainer>
   );
 }

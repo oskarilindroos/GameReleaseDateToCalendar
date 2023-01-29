@@ -1,16 +1,15 @@
 import {
   DrawerContentScrollView,
-  DrawerItem,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { DrawerContainer } from "../styled/styled.components";
+import * as Styled from "../styled/styles";
 
 export default function CustomDrawer(props: any) {
   return (
-    <DrawerContainer>
+    <Styled.DrawerContainer>
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-    </DrawerContainer>
+    </Styled.DrawerContainer>
   );
 }

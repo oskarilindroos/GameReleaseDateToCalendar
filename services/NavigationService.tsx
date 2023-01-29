@@ -7,8 +7,8 @@ import {
 
 export const navigationRef = createNavigationContainerRef();
 
-export function openDrawer() {
-  navigationRef.dispatch(DrawerActions.openDrawer());
+export function toggleDrawer() {
+  navigationRef.dispatch(DrawerActions.toggleDrawer());
 }
 
 export function navigateTo(name: any, params: any) {
