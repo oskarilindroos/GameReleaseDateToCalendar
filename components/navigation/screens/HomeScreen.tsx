@@ -78,6 +78,9 @@ export default function HomeScreen({ route }) {
             ? `Search results for '${searchPhrase}'`
             : "Games releasing soon"}
         </Styled.Title>
+        {gamesList.length === 0 && !loading && (
+          <Styled.Paragraph>No results</Styled.Paragraph>
+        )}
         <FlatList
           contentContainerStyle={{
             alignItems: "center",

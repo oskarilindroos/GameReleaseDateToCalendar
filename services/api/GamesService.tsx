@@ -46,7 +46,7 @@ export const searchUpcomingGamesByName = (searchPhrase: string) => {
     release_dates.platform = (6,167,169,130) &
     first_release_date > ${Math.floor(Date.now() / 1000)};
     sort first_release_date asc;
-    limit 100;
+    limit 200;
     `;
 
   return axios
@@ -61,7 +61,7 @@ export const getGamesNextMonth = () => {
   const data = `fields name, id, cover.image_id, first_release_date;
     where release_dates.platform = (6,167,169,130) & (first_release_date > 1674907890 & first_release_date < 1677576484);
     sort first_release_date asc;
-    limit 200;
+    limit 400;
   `;
 
   return axios
