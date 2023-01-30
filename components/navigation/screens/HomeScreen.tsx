@@ -35,18 +35,20 @@ export default function HomeScreen({ route }) {
   }, [width]);
 
   // Get the games releasing next month
-  // This is only ran once when the app first loads
+  // This is run when the app first loads and when the user submits an empty searchphrase
   useEffect(() => {
-    setLoading(true);
-    getGamesNextMonth()
-      .then((result) => {
-        setGamesList(result);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+    if (!searchPhrase) {
+      setLoading(true);
+      getGamesNextMonth()
+        .then((result) => {
+          setGamesList(result);
+          setLoading(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [searchPhrase]);
 
   // Set the search phrase state if route.params changes
   // route.params changes when the user submits the search input field and navigates back to home screen

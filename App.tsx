@@ -1,7 +1,7 @@
 import "react-native-gesture-handler";
-import { useState, useEffect } from "react";
-import { EventRegister } from "react-native-event-listeners";
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import { Appearance } from "react-native";
 import { navigationRef } from "./services/NavigationService";
 import DrawerNavigator from "./components/navigation/DrawerNavigator";
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
@@ -10,18 +10,13 @@ import { useFonts } from "expo-font";
 import { darkTheme, lightTheme } from "./components/styled/themes";
 import Header from "./components/Header/Header";
 
-export default function App() {
-  const [theme, setTheme] = useState(darkTheme);
+const systemTheme = Appearance.getColorScheme();
 
-  useEffect(() => {
-    // Event listener for listening to the toggleDarkTheme event from the Settings Screen
-    EventRegister.addEventListener("toggleDarkTheme", (toggled: boolean) => {
-      toggled ? setTheme(lightTheme) : setTheme(darkTheme);
-    });
-    return () => {
-      EventRegister.removeEventListener("toggleDarkTheme");
-    };
-  });
+export default function App() {
+  // Set the initial theme state based on the system theme
+  const [theme, setTheme] = useState(
+    systemTheme === "dark" ? darkTheme : lightTheme
+  );
 
   // Load fonts
   const [loaded] = useFonts({
@@ -38,7 +33,7 @@ export default function App() {
       <Header />
       <StatusBar style={theme == darkTheme ? "light" : "dark"} />
       <NavigationContainer ref={navigationRef} theme={DarkTheme}>
-        <DrawerNavigator />
+        <DrawerNavigator setTheme={setTheme} />
       </NavigationContainer>
     </ThemeProvider>
   );

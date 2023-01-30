@@ -2,17 +2,20 @@ import { Switch } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { useTheme } from "styled-components/native";
-import { EventRegister } from "react-native-event-listeners";
 import * as Styled from "../../styled/styles";
+import { darkTheme, lightTheme } from "../../styled/themes";
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ setTheme }) {
   const theme = useTheme();
-  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(true); // Dark theme enabled by default
+  const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(
+    theme.name === "dark-theme" ? true : false
+  );
 
-  const toggleDarkTheme = () => {
-    setIsDarkThemeEnabled((value: boolean) => !value);
-    EventRegister.emit("toggleDarkTheme", isDarkThemeEnabled);
+  const toggleTheme = (toggled: boolean) => {
+    setIsDarkThemeEnabled(toggled);
+    isDarkThemeEnabled ? setTheme(lightTheme) : setTheme(darkTheme);
   };
+
   return (
     <Styled.Wrapper>
       <Styled.ContentContainer>
@@ -29,8 +32,10 @@ export default function SettingsScreen() {
           <Switch
             thumbColor={theme.colors.primary}
             style={{ marginLeft: "auto" }}
+            onValueChange={(value) => {
+              toggleTheme(value);
+            }}
             value={isDarkThemeEnabled}
-            onValueChange={toggleDarkTheme}
           />
         </Styled.FlexRow>
         <Styled.Divider />

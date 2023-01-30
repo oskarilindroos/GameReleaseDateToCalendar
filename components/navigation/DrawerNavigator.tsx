@@ -9,7 +9,7 @@ import AboutScreen from "./screens/AboutScreen";
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigator() {
+export default function DrawerNavigator({ setTheme }) {
   const theme = useTheme();
 
   return (
@@ -43,13 +43,14 @@ export default function DrawerNavigator() {
       />
       <Drawer.Screen
         name="Settings"
-        component={SettingsScreen}
         options={{
           drawerIcon: ({ color }) => (
             <Ionicons name="settings-sharp" size={25} color={color} />
           ),
         }}
-      />
+      >
+        {() => <SettingsScreen setTheme={setTheme} />}
+      </Drawer.Screen>
       <Drawer.Screen
         name="About"
         component={AboutScreen}
