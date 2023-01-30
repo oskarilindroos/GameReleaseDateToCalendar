@@ -29,7 +29,7 @@ export default function DrawerNavigator({ setTheme }) {
           marginLeft: -10,
         },
         drawerType: "slide",
-        swipeEdgeWidth: 1000,
+        swipeEdgeWidth: 200,
       }}
     >
       <Drawer.Screen

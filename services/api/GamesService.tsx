@@ -14,6 +14,7 @@ const formatGamesData = (data) => {
   const formatted = data.map((game) => ({
     id: game.id,
     name: game.name,
+    summary: game.summary,
     coverId: game.cover ? game.cover.image_id : "nocover",
     firstReleaseDate: new Date(game.first_release_date * 1000)
       .toDateString()
@@ -28,7 +29,7 @@ const formatGamesData = (data) => {
 export const searchUpcomingGamesByName = async (searchPhrase: string) => {
   const nowTimeStamp = Math.floor(Date.now() / 1000); // Converting the current date to Unix timestamp
 
-  const payload = `fields name, id, cover.image_id, first_release_date;
+  const payload = `fields name, id, cover.image_id, first_release_date, summary;
     where name ~ *"${searchPhrase}"* &
     themes.slug != "erotic" &
     version_parent = null &
@@ -49,8 +50,8 @@ export const getGamesNextMonth = async () => {
   const nowTimeStamp = Math.floor(Date.now() / 1000); // Converting the current date to Unix timestamp
   const monthFromNowTimeStamp = nowTimeStamp + 2592000; // 2592000 is approximately a month in seconds
 
-  const payload = `fields name, id, cover.image_id, first_release_date;
-    where themes.slug != "erotic" & (first_release_date > ${nowTimeStamp} & first_release_date < ${monthFromNowTimeStamp});
+  const payload = `fields name, id, cover.image_id, first_release_date, summary;
+    where themes.slug != "erotic" & version_parent = null & (first_release_date > ${nowTimeStamp} & first_release_date < ${monthFromNowTimeStamp});
     sort first_release_date asc;
     limit 400;
   `;

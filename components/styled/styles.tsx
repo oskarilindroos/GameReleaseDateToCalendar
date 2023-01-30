@@ -87,6 +87,38 @@ export const GameCardDate = styled.Text`
   font-size: ${({ theme }) => theme.fontSizes.s};
   color: ${({ theme }) => theme.colors.secondary};
 `;
+export const GameSummaryContainer = styled.ScrollView`
+  margin-top: 20px;
+`;
+
+export const GameSummaryText = styled.Text`
+  border: 1px solid red;
+  font-family: MontserratItalic;
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const GameModalContainerFront = styled.ImageBackground`
+  padding: 20px;
+  width: 400px;
+  height: 530px;
+`;
+
+export const GameModalContainerBack = styled.View`
+  width: 400px;
+  height: 530px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: ${({ theme }) => theme.colors.background};
+`;
+
+export const AddToCalendarButton = styled.Pressable`
+  margin-top: auto;
+  height: 20%;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.primary};
+`;
 
 export const DrawerContainer = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
