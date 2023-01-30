@@ -1,4 +1,5 @@
 import "react-native-gesture-handler";
+import { LogBox } from "react-native";
 import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Appearance } from "react-native";
@@ -11,7 +12,7 @@ import { darkTheme, lightTheme } from "./components/styled/themes";
 import Header from "./components/Header/Header";
 
 const systemTheme = Appearance.getColorScheme();
-
+LogBox.ignoreLogs([`to contain units`]); //TODO: Remove this
 export default function App() {
   // Set the initial theme state based on the system theme
   const [theme, setTheme] = useState(

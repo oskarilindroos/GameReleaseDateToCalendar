@@ -14,6 +14,7 @@ export default function HomeScreen({ route }) {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [gamesList, setGamesList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const minCols = 2;
   const imageWidth = 150;
@@ -46,6 +47,9 @@ export default function HomeScreen({ route }) {
         })
         .catch((error) => {
           console.log(error);
+          setErrorMessage(JSON.stringify(error.message));
+          setGamesList([]);
+          setLoading(false);
         });
     }
   }, [searchPhrase]);
@@ -69,6 +73,9 @@ export default function HomeScreen({ route }) {
         })
         .catch((error) => {
           console.log(error);
+          setErrorMessage(JSON.stringify(error.message));
+          setGamesList([]);
+          setLoading(false);
         });
     }
   }, [searchPhrase]);
@@ -81,7 +88,7 @@ export default function HomeScreen({ route }) {
             : "Games releasing soon"}
         </Styled.Title>
         {gamesList.length === 0 && !loading && (
-          <Styled.Paragraph>No results</Styled.Paragraph>
+          <Styled.Paragraph>No results {errorMessage}</Styled.Paragraph>
         )}
         <FlatList
           contentContainerStyle={{
