@@ -1,5 +1,5 @@
 import Modal from "react-native-modal";
-import { Ionicons } from "@expo/vector-icons";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { View, Text, Pressable, Button } from "react-native";
 import { useTheme } from "styled-components";
@@ -22,16 +22,26 @@ export default function GameCardModal({ game, showModal, setShowModal }) {
           }}
         >
           <Styled.Title>{game.name}</Styled.Title>
-          <Styled.Paragraph>{game.firstReleaseDate}</Styled.Paragraph>
+          <Styled.ParagraphPrimaryColor>
+            Release date:
+            <Styled.Paragraph>
+              {" "}
+              {game.firstReleaseDate} (in {game.releasingIn} days)
+            </Styled.Paragraph>
+          </Styled.ParagraphPrimaryColor>
           {game.summary && (
             <Styled.GameSummaryContainer>
-              <Styled.GameSummaryText>{game.summary}</Styled.GameSummaryText>
+              <Styled.GameSummaryText>"{game.summary}"</Styled.GameSummaryText>
             </Styled.GameSummaryContainer>
           )}
+          <Styled.AddToCalendarButton>
+            <FontAwesome
+              name="calendar-plus-o"
+              size={120}
+              color={theme.colors.primary}
+            />
+          </Styled.AddToCalendarButton>
         </Styled.GameModalContainerFront>
-        <Styled.AddToCalendarButton>
-          <Styled.Paragraph>Add to calendar</Styled.Paragraph>
-        </Styled.AddToCalendarButton>
       </Styled.GameModalContainerBack>
     </Modal>
   );

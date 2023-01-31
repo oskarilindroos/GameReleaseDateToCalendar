@@ -11,11 +11,24 @@ const gamesAPI = axios.create({
 
 // Internal function for formatting the response games data in to a more usable format
 const formatGamesData = (data) => {
+  const dateNow = new Date();
+
+  const calculateDaysBetween = (dateNow: Date, dateThen: Date) => {
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    return Math.round(
+      Math.abs((dateNow.getTime() - dateThen.getTime()) / oneDay)
+    );
+  };
+
   const formatted = data.map((game) => ({
     id: game.id,
     name: game.name,
     summary: game.summary,
     coverId: game.cover ? game.cover.image_id : "nocover",
+    releasingIn: calculateDaysBetween(
+      dateNow,
+      new Date(game.first_release_date * 1000)
+    ),
     firstReleaseDate: new Date(game.first_release_date * 1000)
       .toDateString()
       .split(" ")

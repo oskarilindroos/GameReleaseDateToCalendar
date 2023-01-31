@@ -9,8 +9,12 @@ export const Wrapper = styled.View`
 export const Paragraph = styled.Text`
   margin-top: 10px;
   font-family: MontserratSemiBold;
-  font-size: ${({ theme }) => theme.fontSizes.l};
+  font-size: ${({ theme }) => theme.fontSizes.m};
   color: ${({ theme }) => theme.colors.secondary};
+`;
+
+export const ParagraphPrimaryColor = styled(Paragraph)`
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const Title = styled.Text`
@@ -92,7 +96,6 @@ export const GameSummaryContainer = styled.ScrollView`
 `;
 
 export const GameSummaryText = styled.Text`
-  border: 1px solid red;
   font-family: MontserratItalic;
   font-size: ${({ theme }) => theme.fontSizes.m};
   color: ${({ theme }) => theme.colors.primary};
@@ -114,10 +117,9 @@ export const GameModalContainerBack = styled.View`
 
 export const AddToCalendarButton = styled.Pressable`
   margin-top: auto;
-  height: 20%;
+  height: 30%;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const DrawerContainer = styled.View`
