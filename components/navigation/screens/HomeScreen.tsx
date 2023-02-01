@@ -20,6 +20,8 @@ export default function HomeScreen({ route }) {
   const imageWidth = 150;
   const imageMargin = 10;
 
+  const renderItem = ({ item }) => <GameCard game={item} />;
+
   const calcNumColumns = (width: number) => {
     const cols = width / imageWidth;
     const colsFloor = Math.floor(cols) > minCols ? Math.floor(cols) : minCols;
@@ -38,20 +40,26 @@ export default function HomeScreen({ route }) {
   // Get the games releasing next month
   // This is run when the app first loads and when the user submits an empty searchphrase
   useEffect(() => {
-    if (!searchPhrase) {
+    if (searchPhrase) return;
+
+    const fetchData = async () => {
       setLoading(true);
-      getGamesNextMonth()
-        .then((result) => {
-          setGamesList(result);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setErrorMessage(JSON.stringify(error.message));
-          setGamesList([]);
-          setLoading(false);
-        });
-    }
+      try {
+        const result = await getGamesNextMonth();
+        setGamesList(result);
+      } catch (error) {
+        console.log(error);
+        setErrorMessage(JSON.stringify(error.message));
+        setGamesList([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+
+    return () => {
+      setGamesList([]);
+    };
   }, [searchPhrase]);
 
   // Set the search phrase state if route.params changes
@@ -62,34 +70,32 @@ export default function HomeScreen({ route }) {
 
   // When the search phrase is changed, call the games service for the search results
   useEffect(() => {
-    // The if clause prevents useffect from being ran on first render
-    if (searchPhrase) {
+    if (!searchPhrase) return;
+
+    setGamesList([]);
+    setLoading(true);
+    const fetchData = async () => {
+      try {
+        const result = await searchUpcomingGamesByName(searchPhrase);
+        setGamesList(result);
+      } catch (error) {
+        console.log(error);
+        setErrorMessage(JSON.stringify(error.message));
+        setGamesList([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+
+    return () => {
       setGamesList([]);
-      setLoading(true);
-      searchUpcomingGamesByName(searchPhrase)
-        .then((result) => {
-          setGamesList(result);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.log(error);
-          setErrorMessage(JSON.stringify(error.message));
-          setGamesList([]);
-          setLoading(false);
-        });
-    }
+    };
   }, [searchPhrase]);
+
   return (
     <Styled.Wrapper>
-      <Styled.ContentContainer>
-        <Styled.Title style={{ marginBottom: 10 }}>
-          {searchPhrase
-            ? `Search results for '${searchPhrase}'`
-            : "Games releasing soon"}
-        </Styled.Title>
-        {gamesList.length === 0 && !loading && (
-          <Styled.Paragraph>No results {errorMessage}</Styled.Paragraph>
-        )}
+      <Styled.ContentContainer style={{ marginTop: 0 }}>
         <FlatList
           contentContainerStyle={{
             alignItems: "center",
@@ -100,8 +106,35 @@ export default function HomeScreen({ route }) {
           key={numColumns}
           numColumns={numColumns}
           data={gamesList}
-          renderItem={({ item }) => <GameCard game={item} />}
+          renderItem={renderItem}
           keyExtractor={(item) => item.id}
+          initialNumToRender={15}
+          getItemLayout={(_, index) => ({
+            length: 200,
+            offset: 200 * index,
+            index,
+          })}
+          ListHeaderComponentStyle={{
+            justifyContent: "flex-start",
+            alignSelf: "flex-start",
+            marginTop: 20,
+          }}
+          ListHeaderComponent={
+            <>
+              <Styled.Title
+                style={{
+                  marginBottom: 10,
+                }}
+              >
+                {searchPhrase
+                  ? `Search results for '${searchPhrase}'`
+                  : "Games releasing soon"}
+              </Styled.Title>
+              {gamesList.length === 0 && !loading && (
+                <Styled.Paragraph>No results {errorMessage}</Styled.Paragraph>
+              )}
+            </>
+          }
         />
         {loading && (
           <Styled.LoadingIcon size={"large"} color={theme.colors.primary} />
@@ -110,41 +143,3 @@ export default function HomeScreen({ route }) {
     </Styled.Wrapper>
   );
 }
-
-// TODO: Move in to its own file, this is temporary to check that the API works
-/*
-  useEffect(() => {
-    const checkCalendarPermission = async () => {
-      try {
-        const { status } = await Calendar.requestCalendarPermissionsAsync();
-        if (status === "granted") {
-          const allCalendars = await Calendar.getCalendarsAsync();
-
-          // Filter all the owned calendars from the read only ones
-          const ownedCalendars = allCalendars.filter(
-            (calendar) => calendar.accessLevel === "owner"
-          );
-
-          console.log({ ownedCalendars });
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    checkCalendarPermission();
-  }, []);
-  */
-/*
-  {gamesList.map((item) => {
-    return (
-      <Paragraph>
-        {item.name} : {item.release_dates[0].human}
-        <Image
-          source={{
-            uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${item.cover.image_id}.png`,
-          }}
-        />
-      </Paragraph>
-    );
-  })}*/
