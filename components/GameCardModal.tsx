@@ -1,11 +1,22 @@
 import Modal from "react-native-modal";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { View, Text, Pressable, Button } from "react-native";
 import { useTheme } from "styled-components";
 import * as Styled from "./styled/styles";
+import { Game } from "../types/games.d";
 
-export default function GameCardModal({ game, showModal, setShowModal }) {
+interface ModalProps {
+  game: Game;
+  showModal: boolean;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function GameCardModal({
+  game,
+  showModal,
+  setShowModal,
+}: ModalProps) {
   const theme = useTheme();
   return (
     <Modal
@@ -26,7 +37,7 @@ export default function GameCardModal({ game, showModal, setShowModal }) {
             Release date:
             <Styled.Paragraph>
               {" "}
-              {game.firstReleaseDate} (in {game.releasingIn} days)
+              {game.firstReleaseDateString} ({game.releasingInString})
             </Styled.Paragraph>
           </Styled.ParagraphPrimaryColor>
           {game.summary && (
@@ -46,13 +57,3 @@ export default function GameCardModal({ game, showModal, setShowModal }) {
     </Modal>
   );
 }
-
-/*
- <Pressable>
-            <Ionicons
-              name={"close-circle-outline"}
-              size={50}
-              color={theme.colors.primary}
-            />
-          </Pressable>
-          */

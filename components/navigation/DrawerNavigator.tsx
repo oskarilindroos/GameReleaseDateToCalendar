@@ -2,6 +2,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import CustomDrawer from "./CustomDrawer";
 import { useTheme } from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
+import { ThemeStateProps } from "../../types/styled.d";
 
 import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
@@ -9,7 +10,7 @@ import AboutScreen from "./screens/AboutScreen";
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigator({ setTheme }) {
+export default function DrawerNavigator({ setTheme }: ThemeStateProps) {
   const theme = useTheme();
 
   return (

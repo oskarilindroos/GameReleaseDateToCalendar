@@ -4,8 +4,9 @@ import { useState } from "react";
 import { useTheme } from "styled-components/native";
 import * as Styled from "../../styled/styles";
 import { darkTheme, lightTheme } from "../../styled/themes";
+import { ThemeStateProps } from "../../../types/styled.d";
 
-export default function SettingsScreen({ setTheme }) {
+export default function SettingsScreen({ setTheme }: ThemeStateProps) {
   const theme = useTheme();
   const [isDarkThemeEnabled, setIsDarkThemeEnabled] = useState(
     theme.name === "dark-theme" ? true : false

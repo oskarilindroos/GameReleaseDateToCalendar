@@ -81,14 +81,3 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
 });
-
-/*
-<Styled.GameCardImage
-imageStyle={{
-  borderRadius: theme.borderRadius,
-}}
-resizeMode="cover"
-source={{
-  uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.coverId}.png`,
-}}
-/>*/

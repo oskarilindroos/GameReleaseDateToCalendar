@@ -24,6 +24,7 @@ DerivedData
 project.xcworkspace
 **/.xcode.env.local
 
+/dummydata/*
 
 .expo/
 dist/

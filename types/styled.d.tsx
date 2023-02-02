@@ -1,4 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
 import "styled-components/native";
+import { DefaultTheme } from "styled-components/native";
 
 // Extending the DefaultTheme interface
 declare module "styled-components/native" {
@@ -25,4 +27,10 @@ declare module "styled-components/native" {
       xl: number;
     };
   }
+}
+
+// For passing the setTheme state as props
+export interface ThemeStateProps {
+  //theme: DefaultTheme;
+  setTheme: Dispatch<SetStateAction<DefaultTheme>>;
 }

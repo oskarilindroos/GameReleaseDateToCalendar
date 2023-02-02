@@ -7,12 +7,13 @@ import {
 } from "../../../services/api/GamesService";
 import GameCard from "../../GameCard";
 import { FlatList, useWindowDimensions } from "react-native";
+import { Game } from "../../../types/games.d";
 
 export default function HomeScreen({ route }) {
   const theme = useTheme();
 
   const [searchPhrase, setSearchPhrase] = useState("");
-  const [gamesList, setGamesList] = useState([]);
+  const [gamesList, setGamesList] = useState<Game[]>([]);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -20,7 +21,7 @@ export default function HomeScreen({ route }) {
   const imageWidth = 150;
   const imageMargin = 10;
 
-  const renderItem = ({ item }) => <GameCard game={item} />;
+  const renderItem = ({ item }: { item: Game }) => <GameCard game={item} />;
 
   const calcNumColumns = (width: number) => {
     const cols = width / imageWidth;
@@ -49,7 +50,9 @@ export default function HomeScreen({ route }) {
         setGamesList(result);
       } catch (error) {
         console.log(error);
-        setErrorMessage(JSON.stringify(error.message));
+        if (error instanceof Error) {
+          setErrorMessage(JSON.stringify(error.message));
+        }
         setGamesList([]);
       } finally {
         setLoading(false);
@@ -79,8 +82,9 @@ export default function HomeScreen({ route }) {
         const result = await searchUpcomingGamesByName(searchPhrase);
         setGamesList(result);
       } catch (error) {
-        console.log(error);
-        setErrorMessage(JSON.stringify(error.message));
+        if (error instanceof Error) {
+          setErrorMessage(JSON.stringify(error.message));
+        }
         setGamesList([]);
       } finally {
         setLoading(false);
@@ -107,8 +111,7 @@ export default function HomeScreen({ route }) {
           numColumns={numColumns}
           data={gamesList}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          initialNumToRender={15}
+          initialNumToRender={10}
           getItemLayout={(_, index) => ({
             length: 200,
             offset: 200 * index,

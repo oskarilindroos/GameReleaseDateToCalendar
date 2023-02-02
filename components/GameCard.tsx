@@ -3,18 +3,9 @@ import GameCardModal from "./GameCardModal";
 import { useState } from "react";
 import { useTheme } from "styled-components";
 import * as Styled from "./styled/styles";
+import { Game } from "../types/games.d";
 
-type GameProps = {
-  game: {
-    id: number;
-    name: string;
-    coverId: number;
-    releaseDates: Array<string>;
-    firstReleaseDate: string;
-  };
-};
-
-export default function GameCard({ game }: GameProps) {
+export default function GameCard({ game }: { game: Game }) {
   const theme = useTheme();
   const [showModal, setShowModal] = useState(false);
 
@@ -39,7 +30,7 @@ export default function GameCard({ game }: GameProps) {
         />
       </Pressable>
       <Styled.GameCardName>{game.name}</Styled.GameCardName>
-      <Styled.GameCardDate>{game.firstReleaseDate}</Styled.GameCardDate>
+      <Styled.GameCardDate>{game.firstReleaseDateString}</Styled.GameCardDate>
     </Styled.GameCard>
   );
 }
