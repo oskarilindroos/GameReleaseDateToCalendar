@@ -6,7 +6,18 @@ export interface APIresponse {
   };
   first_release_date: number;
   name: string;
-  screenshots: number[];
+  screenshots?: [
+    {
+      id: number;
+      image_id: string;
+    }
+  ];
+  platforms: [
+    {
+      id: number;
+      abbreviation: string;
+    }
+  ];
   summary: string;
 }
 
@@ -15,8 +26,9 @@ export interface Game {
   id: number;
   name: string;
   summary: string;
-  coverId: string;
-  screenshots: Array<number>;
+  coverURL: string;
+  screenshotURLs: Array<object> | null;
+  platforms: Array<string | null>;
   releasingInString: string;
   firstReleaseDateString: string;
 }

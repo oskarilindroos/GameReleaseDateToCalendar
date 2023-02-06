@@ -41,23 +41,6 @@ export default function SettingsScreen({ setTheme }: ThemeStateProps) {
         </Styled.FlexRow>
         <Styled.Divider />
         <Styled.FlexRow>
-          <Ionicons
-            name="game-controller"
-            size={32}
-            color={theme.colors.primary}
-          />
-          <Styled.Paragraph style={{ paddingLeft: 15 }}>
-            Select Platform
-          </Styled.Paragraph>
-          <Ionicons
-            style={{ marginLeft: "auto" }}
-            name="chevron-forward"
-            size={32}
-            color={theme.colors.primary}
-          />
-        </Styled.FlexRow>
-        <Styled.Divider />
-        <Styled.FlexRow>
           <Ionicons name="calendar" size={32} color={theme.colors.primary} />
           <Styled.Paragraph style={{ paddingLeft: 15 }}>
             Select Calendar

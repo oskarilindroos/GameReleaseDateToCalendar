@@ -25,7 +25,7 @@ export default function GameCard({ game }: { game: Game }) {
             borderRadius: theme.borderRadius,
           }}
           source={{
-            uri: `https://images.igdb.com/igdb/image/upload/t_cover_big/${game.coverId}.png`,
+            uri: game.coverURL,
           }}
         />
       </Pressable>

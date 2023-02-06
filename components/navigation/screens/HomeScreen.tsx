@@ -112,11 +112,11 @@ export default function HomeScreen({ route }) {
           data={gamesList}
           renderItem={renderItem}
           initialNumToRender={10}
-          getItemLayout={(_, index) => ({
+          /*getItemLayout={(_, index) => ({
             length: 200,
             offset: 200 * index,
             index,
-          })}
+          })}*/
           ListHeaderComponentStyle={{
             justifyContent: "flex-start",
             alignSelf: "flex-start",

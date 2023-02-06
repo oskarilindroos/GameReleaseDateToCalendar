@@ -43,7 +43,12 @@ export default function SearchBar() {
         }}
       />
       {focused && searchPhrase.length > 0 && (
-        <Pressable onPress={() => setSearchPhrase("")} hitSlop={20}>
+        <Pressable
+          onPress={() => {
+            setSearchPhrase("");
+          }}
+          hitSlop={20}
+        >
           <Ionicons
             style={{
               paddingRight: 20,

@@ -43,6 +43,7 @@ export const SearchBarContainer = styled.View`
   width: 75%;
   max-width: 600px;
   border-radius: 200px;
+  border: 2px solid ${({ theme }) => theme.colors.divider};
   flex-direction: row;
   background-color: ${({ theme }) => theme.colors.secondaryBackground};
   align-items: center;
@@ -60,7 +61,7 @@ export const SearchBarTextInput = styled.TextInput`
 export const ContentContainer = styled.View`
   width: 90%;
   margin-top: 20px;
-  margin-bottom: 20px;
+
   margin-left: auto;
   margin-right: auto;
 `;
@@ -91,35 +92,44 @@ export const GameCardDate = styled.Text`
   font-size: ${({ theme }) => theme.fontSizes.s};
   color: ${({ theme }) => theme.colors.secondary};
 `;
-export const GameSummaryContainer = styled.ScrollView`
-  margin-top: 20px;
+export const GameSummaryContainer = styled.View`
+  margin-top: 5px;
 `;
 
 export const GameSummaryText = styled.Text`
-  font-family: MontserratItalic;
+  font-family: MontserratSemiBold;
   font-size: ${({ theme }) => theme.fontSizes.m};
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export const GameModalContainerFront = styled.ImageBackground`
-  padding: 20px;
-  width: 400px;
-  height: 530px;
-`;
-
-export const GameModalContainerBack = styled.View`
-  width: 400px;
-  height: 530px;
+export const GameModalContainer = styled.ScrollView`
+  //height: 530px;
+  // border-top-right-radius: 25px;
+  //border-top-left-radius: 25px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   background-color: ${({ theme }) => theme.colors.background};
 `;
 
+export const GameModalContentContainer = styled.View`
+  //border: 1px solid red;
+  flex-direction: column;
+`;
+
+export const GameModalContentRow = styled.View`
+  padding: 20px;
+  //border: 1px solid red;
+  min-height: 300px;
+  //border-bottom-width: 2px;
+  //border-bottom-color: ${({ theme }) => theme.colors.divider};
+`;
+
 export const AddToCalendarButton = styled.Pressable`
   margin-top: auto;
-  height: 30%;
-  justify-content: center;
-  align-items: center;
+  margin-bottom: auto;
+  align-self: center;
+  justify-self: center;
 `;
 
 export const DrawerContainer = styled.View`
