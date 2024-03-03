@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import * as Styled from "../../styled/styles";
 import { useTheme } from "styled-components/native";
-import {
-  searchUpcomingGamesByName,
-  getGamesNextMonth,
-} from "../../../services/api/GamesService";
+import useGames from "../../../hooks/useGames";
 import GameCard from "../../GameCard";
 import { FlatList, useWindowDimensions } from "react-native";
 import { Game } from "../../../types/games.d";
 
-export default function HomeScreen({ route }) {
+const HomeScreen = ({ route }: { route: any }) => {
   const theme = useTheme();
 
   const [searchPhrase, setSearchPhrase] = useState("");
-  const [gamesList, setGamesList] = useState<Game[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const {
+    games,
+    loading,
+    error,
+    fetchUpcomingGamesByName,
+    accessTokenFetched,
+    fetchGamesReleasingNextMonth,
+  } = useGames();
 
   const minCols = 2;
   const imageWidth = 150;
@@ -38,64 +40,17 @@ export default function HomeScreen({ route }) {
     setNumColumns(calcNumColumns(width));
   }, [width]);
 
-  // Get the games releasing next month
-  // This is run when the app first loads and when the user submits an empty searchphrase
   useEffect(() => {
-    if (searchPhrase) return;
-
-    const fetchData = async () => {
-      setLoading(true);
-      try {
-        const result = await getGamesNextMonth();
-        setGamesList(result);
-      } catch (error) {
-        console.log(error);
-        if (error instanceof Error) {
-          setErrorMessage(JSON.stringify(error.message));
-        }
-        setGamesList([]);
-      } finally {
-        setLoading(false);
+    if (accessTokenFetched) {
+      if (route.params) {
+        fetchUpcomingGamesByName(route.params);
+        console.log("Fetching games by name");
+      } else {
+        fetchGamesReleasingNextMonth();
+        console.log("Fetching games releasing next month");
       }
-    };
-    fetchData();
-
-    return () => {
-      setGamesList([]);
-    };
-  }, [searchPhrase]);
-
-  // Set the search phrase state if route.params changes
-  // route.params changes when the user submits the search input field and navigates back to home screen
-  useEffect(() => {
-    setSearchPhrase(route.params);
-  }, [route.params]);
-
-  // When the search phrase is changed, call the games service for the search results
-  useEffect(() => {
-    if (!searchPhrase) return;
-
-    setGamesList([]);
-    setLoading(true);
-    const fetchData = async () => {
-      try {
-        const result = await searchUpcomingGamesByName(searchPhrase);
-        setGamesList(result);
-      } catch (error) {
-        if (error instanceof Error) {
-          setErrorMessage(JSON.stringify(error.message));
-        }
-        setGamesList([]);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-
-    return () => {
-      setGamesList([]);
-    };
-  }, [searchPhrase]);
+    }
+  }, [route.params, accessTokenFetched]);
 
   return (
     <Styled.Wrapper>
@@ -109,14 +64,9 @@ export default function HomeScreen({ route }) {
           showsVerticalScrollIndicator={false}
           key={numColumns}
           numColumns={numColumns}
-          data={gamesList}
+          data={games}
           renderItem={renderItem}
           initialNumToRender={10}
-          /*getItemLayout={(_, index) => ({
-            length: 200,
-            offset: 200 * index,
-            index,
-          })}*/
           ListHeaderComponentStyle={{
             justifyContent: "flex-start",
             alignSelf: "flex-start",
@@ -133,8 +83,8 @@ export default function HomeScreen({ route }) {
                   ? `Search results for '${searchPhrase}'`
                   : "Games releasing soon"}
               </Styled.Title>
-              {gamesList.length === 0 && !loading && (
-                <Styled.Paragraph>No results {errorMessage}</Styled.Paragraph>
+              {games.length === 0 && !loading && (
+                <Styled.Paragraph>No results {error}</Styled.Paragraph>
               )}
             </>
           }
@@ -145,4 +95,6 @@ export default function HomeScreen({ route }) {
       </Styled.ContentContainer>
     </Styled.Wrapper>
   );
-}
+};
+
+export default HomeScreen;

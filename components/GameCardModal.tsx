@@ -19,7 +19,6 @@ export default function GameCardModal({
   setShowModal,
 }: ModalProps) {
   const theme = useTheme();
-  console.log(game.name, game.platforms);
   return (
     <Modal
       isVisible={showModal}
