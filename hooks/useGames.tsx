@@ -38,6 +38,7 @@ const formatGamesData = (data: Array<APIresponse>): Array<Game> => {
       ),
       releasingInString: moment.unix(first_release_date).fromNow(),
       firstReleaseDateString: moment.unix(first_release_date).format("ll"),
+      firstReleaseDate: first_release_date,
     })
   );
   return formatted;
@@ -52,6 +53,7 @@ const useGames = () => {
 
   const fetchAccessToken = async () => {
     try {
+      setLoading(true);
       const response = await axios.post(
         "https://id.twitch.tv/oauth2/token",
         null,
@@ -66,9 +68,11 @@ const useGames = () => {
 
       setAccessToken(response.data.access_token);
       setAccessTokenFetched(true);
+      setLoading(false);
       console.log("Access token fetched");
     } catch (error) {
       console.log(error);
+      setLoading(false);
       setError("Error");
     }
   };
