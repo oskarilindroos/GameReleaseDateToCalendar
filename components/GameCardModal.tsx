@@ -1,7 +1,7 @@
 import Modal from "react-native-modal";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { Dispatch, SetStateAction, useState } from "react";
-import { View, Text, Pressable, Button } from "react-native";
+import useCalendar from "../hooks/useCalendar";
 import { ImageSlider } from "react-native-image-slider-banner";
 import { useTheme } from "styled-components";
 import * as Styled from "./styled/styles";
@@ -19,6 +19,8 @@ export default function GameCardModal({
   setShowModal,
 }: ModalProps) {
   const theme = useTheme();
+  const { addEvent } = useCalendar();
+
   return (
     <Modal
       isVisible={showModal}
@@ -83,7 +85,7 @@ export default function GameCardModal({
             )}
           </Styled.GameModalContentRow>
           <Styled.GameModalContentRow>
-            <Styled.AddToCalendarButton>
+            <Styled.AddToCalendarButton onPress={() => addEvent(game)}>
               <FontAwesome
                 name="calendar-plus-o"
                 size={120}
