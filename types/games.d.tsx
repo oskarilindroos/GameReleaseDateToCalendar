@@ -31,4 +31,5 @@ export interface Game {
   platforms: Array<string | null>;
   releasingInString: string;
   firstReleaseDateString: string;
+  firstReleaseDate: number;
 }
